@@ -20,7 +20,7 @@ public class ApiEndpoints {
     @Autowired
     private RestTemplate template;
 
-    @GetMapping("authenticate")
+    @GetMapping("authorize")
     public ResponseEntity<AuthorizationResponse> authorize() {
         return ResponseEntity.ok().body(authentication.authenticate());
     }
