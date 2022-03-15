@@ -1,0 +1,27 @@
+server:
+  port: 9099
+
+spring:
+  application:
+    name: MPESA-SERVICE
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    url: jdbc:mariadb://localhost:3306/fortunecredit
+    username: root
+    password: me@2020
+    driverClassName: org.mariadb.jdbc.Driver
+
+eureka:
+  client:
+    enabled: false
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+  instance:
+    hostname: localhost
