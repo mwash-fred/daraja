@@ -3,8 +3,8 @@ package co.ke.willsprojects.daraja.Resources;
 import co.ke.willsprojects.daraja.Components.B2CSimulation;
 import co.ke.willsprojects.daraja.Components.MpesaAuthentication;
 import co.ke.willsprojects.daraja.JsonSchemas.AuthorizationResponse;
-import co.ke.willsprojects.daraja.JsonSchemas.B2CSimulationRequest;
-import co.ke.willsprojects.daraja.JsonSchemas.B2CSimulationResponse;
+import co.ke.willsprojects.daraja.JsonSchemas.C2BSimulationRequest;
+import co.ke.willsprojects.daraja.JsonSchemas.C2BSimulationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,7 @@ public class ApiEndpoints {
     }
 
     @PostMapping("b2cSimulation")
-    public ResponseEntity<B2CSimulationResponse> simulate(@RequestBody B2CSimulationRequest request) {
+    public ResponseEntity<C2BSimulationResponse> simulate(@RequestBody C2BSimulationRequest request) {
         return ResponseEntity.ok().body(simulation.simulate(request));
     }
 

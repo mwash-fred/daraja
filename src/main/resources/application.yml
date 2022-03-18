@@ -26,7 +26,12 @@ eureka:
   instance:
     hostname: localhost
 
-app:
-  consumer:
-    key: F7STco32FzELmkShGfs8GXBrsrDxEfti
-    secret: YUR1qwdi8HLZJo6F
+mpesa:
+  app:
+    consumer:
+      key: F7STco32FzELmkShGfs8GXBrsrDxEfti
+      secret: YUR1qwdi8HLZJo6F
+  b2c:
+    validationUrl:
+    confirmationUrl:
+

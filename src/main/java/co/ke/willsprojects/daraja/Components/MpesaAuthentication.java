@@ -21,9 +21,9 @@ public class MpesaAuthentication {
     @Autowired
     private RestTemplate template;
 
-    @Value("${app.consumer.key}")
+    @Value("${mpesa.app.consumer.key}")
     private String consumerKey;
-    @Value("${app.consumer.secret}")
+    @Value("${mpesa.app.consumer.secret}")
     private String consumerSecret;
 
     public AuthorizationResponse authenticate() {

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class B2CSimulationResponse {
+public class C2BSimulationResponse {
     @JsonProperty("OriginatorConverstionID")
     private String originatorConversationID;
     @JsonProperty("ConversationID")
