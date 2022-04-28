@@ -2,10 +2,10 @@ package co.ke.willsprojects.daraja.JsonSchemas;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class C2BSimulationResponse {
+public class C2BRegistrationResponse {
 
-    @JsonProperty("ConversationID")
-    private String conversationID;
+    @JsonProperty("ResponseCode")
+    private String responseCode;
 
     @JsonProperty("ResponseDescription")
     private String responseDescription;

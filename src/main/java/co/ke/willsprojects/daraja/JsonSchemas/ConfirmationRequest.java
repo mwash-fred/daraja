@@ -3,8 +3,10 @@ package co.ke.willsprojects.daraja.JsonSchemas;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
-public class C2BValidationRequest {
+public class ConfirmationRequest {
 
     @JsonProperty("TransactionType")
     private String transactionType;
@@ -25,10 +27,10 @@ public class C2BValidationRequest {
     private String businessShortCode;
 
     @JsonProperty("OrgAccountBalance")
-    private String orgAccountBalance;
+    private Double orgAccountBalance;
 
     @JsonProperty("TransAmount")
-    private String transAmount;
+    private Double transAmount;
 
     @JsonProperty("ThirdPartyTransID")
     private String thirdPartyTransID;
@@ -43,5 +45,5 @@ public class C2BValidationRequest {
     private String transID;
 
     @JsonProperty("TransTime")
-    private String transTime;
+    private Date transTime;
 }
