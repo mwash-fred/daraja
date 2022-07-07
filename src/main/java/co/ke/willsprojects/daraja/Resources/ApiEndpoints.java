@@ -2,6 +2,7 @@ package co.ke.willsprojects.daraja.Resources;
 
 import co.ke.willsprojects.daraja.Components.C2BUrlRegistration;
 import co.ke.willsprojects.daraja.Components.MpesaAuthentication;
+import co.ke.willsprojects.daraja.Components.PushNotification;
 import co.ke.willsprojects.daraja.Components.Simulation;
 import co.ke.willsprojects.daraja.JsonSchemas.*;
 import co.ke.willsprojects.daraja.Models.MpesaConfirmations.MpesaConfirmationRepository;
@@ -30,6 +31,9 @@ public class ApiEndpoints {
     @Autowired
     private C2BUrlRegistration registration;
 
+    @Autowired
+    private PushNotification notification;
+
     @GetMapping("authorize")
     public ResponseEntity<AuthorizationResponse> authorize() {
         return ResponseEntity.ok().body(authentication.authenticate());
@@ -52,6 +56,7 @@ public class ApiEndpoints {
 
     @PostMapping("confirm/payment")
     public ResponseEntity<ConfirmationRequest> confirm(@RequestBody ConfirmationRequest request) {
+        notification.confirmation(request);
         return ResponseEntity.ok().body(request);
     }
 

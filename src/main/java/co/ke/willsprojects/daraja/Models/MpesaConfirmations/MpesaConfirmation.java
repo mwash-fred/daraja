@@ -25,5 +25,111 @@ public class MpesaConfirmation {
     @Column(length = 10)
     private String coreTranId;
     private Boolean transactionStatus;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date corePostedTime;
 
+    public MpesaConfirmation() {
+    }
+
+    public MpesaConfirmation(Long sn, String customerName, String phoneNumber, Double transactionAmount, Date transactionTime, String paybillNo, String mpesaTransactionNo, String transactionType, String coreTranId, Boolean transactionStatus, Date corePostedTime) {
+        this.sn = sn;
+        this.customerName = customerName;
+        this.phoneNumber = phoneNumber;
+        this.transactionAmount = transactionAmount;
+        this.transactionTime = transactionTime;
+        this.paybillNo = paybillNo;
+        this.mpesaTransactionNo = mpesaTransactionNo;
+        this.transactionType = transactionType;
+        this.coreTranId = coreTranId;
+        this.transactionStatus = transactionStatus;
+        this.corePostedTime = corePostedTime;
+    }
+
+    public Long getSn() {
+        return sn;
+    }
+
+    public void setSn(Long sn) {
+        this.sn = sn;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Double getTransactionAmount() {
+        return transactionAmount;
+    }
+
+    public void setTransactionAmount(Double transactionAmount) {
+        this.transactionAmount = transactionAmount;
+    }
+
+    public Date getTransactionTime() {
+        return transactionTime;
+    }
+
+    public void setTransactionTime(Date transactionTime) {
+        this.transactionTime = transactionTime;
+    }
+
+    public String getPaybillNo() {
+        return paybillNo;
+    }
+
+    public void setPaybillNo(String paybillNo) {
+        this.paybillNo = paybillNo;
+    }
+
+    public String getMpesaTransactionNo() {
+        return mpesaTransactionNo;
+    }
+
+    public void setMpesaTransactionNo(String mpesaTransactionNo) {
+        this.mpesaTransactionNo = mpesaTransactionNo;
+    }
+
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
+    }
+
+    public String getCoreTranId() {
+        return coreTranId;
+    }
+
+    public void setCoreTranId(String coreTranId) {
+        this.coreTranId = coreTranId;
+    }
+
+    public Boolean getTransactionStatus() {
+        return transactionStatus;
+    }
+
+    public void setTransactionStatus(Boolean transactionStatus) {
+        this.transactionStatus = transactionStatus;
+    }
+
+    public Date getCorePostedTime() {
+        return corePostedTime;
+    }
+
+    public void setCorePostedTime(Date corePostedTime) {
+        this.corePostedTime = corePostedTime;
+    }
 }

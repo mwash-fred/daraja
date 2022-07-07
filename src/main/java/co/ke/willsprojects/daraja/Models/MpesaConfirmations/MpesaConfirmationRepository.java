@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MpesaConfirmationRepository extends JpaRepository<MpesaConfirmation, Long> {
+    MpesaConfirmation findByMpesaTransactionNo(String transactionNo);
 }

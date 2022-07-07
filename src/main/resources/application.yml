@@ -10,9 +10,9 @@ spring:
       ddl-auto: update
 
   datasource:
-    url: jdbc:mariadb://localhost:3306/fortunecredit
+    url: jdbc:mariadb://localhost:3306/fortune_sit
     username: root
-    password: me@2020
+    password: sudoFortune
     driverClassName: org.mariadb.jdbc.Driver
 
 eureka:
@@ -29,9 +29,25 @@ eureka:
 mpesa:
   app:
     consumer:
-      key: F7STco32FzELmkShGfs8GXBrsrDxEfti
-      secret: YUR1qwdi8HLZJo6F
+      key: onUXiqfDTmWFagIZYyFu5LAiXva6JCv1
+      secret: UUUlFYplL4c5sKUX
   b2c:
-    validationUrl:
-    confirmationUrl:
+    validationUrl: payup.fortunecredit.co.ke/mobile/validate/payment
+    confirmationUrl: payup.fortunecredit.co.ke/mobile/confirm/payment
+  initiator:
+    name:
 
+fortunecredit:
+  url:
+    sit: https://api.sit.fortunecredit.co.ke/
+    production: https://api.fortuneconnect.fortunecredit.co.ke/
+    connect: https://api.connect.fortunecredit.co.ke/
+
+integration:
+  mpesa:
+    username: MPESA
+    password: mpesa@FortuneIntegration22
+
+  daraja:
+    username: DARAJA
+    password: mpesa@FortuneIntegration22
