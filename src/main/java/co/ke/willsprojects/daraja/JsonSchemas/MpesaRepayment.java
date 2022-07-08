@@ -12,4 +12,5 @@ public class MpesaRepayment {
     public Double amount;
     public String payerName;
     public  String transactionNo;
+    public String paybill;
 }
