@@ -10,7 +10,7 @@ spring:
       ddl-auto: update
 
   datasource:
-    url: jdbc:mariadb://localhost:3306/fortune_sit
+    url: jdbc:mariadb://localhost:3306/fortuneConnect
     username: root
     password: sudoFortune
     driverClassName: org.mariadb.jdbc.Driver
