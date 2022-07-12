@@ -41,13 +41,13 @@ public class PushNotification {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<LoginRequest> loginRequestEntity = new HttpEntity<>(loginRequest, headers);
-            ResponseEntity<LoginResponse> loginResponseEntity = template.exchange(CONSTANTS.sitUrl+"auth/signin", HttpMethod.POST, loginRequestEntity, LoginResponse.class);
+            ResponseEntity<LoginResponse> loginResponseEntity = template.exchange(CONSTANTS.connectUrl+"auth/signin", HttpMethod.POST, loginRequestEntity, LoginResponse.class);
             //Posting to System After Authentication
             MpesaRepayment repayment = new MpesaRepayment(request.getMSISDN(), request.getTransAmount(), request.getFirstName().toUpperCase() + " "+
                     request.getLastName().toUpperCase(), request.getTransID(), request.getBusinessShortCode());
             headers.set("Authorization", "Bearer " + Objects.requireNonNull(loginResponseEntity.getBody()).getToken());
             HttpEntity<MpesaRepayment> coreResponseHttpEntity = new HttpEntity<>(repayment , headers);
-            ResponseEntity<CoreResponse> coreResponseEntity= template.exchange(CONSTANTS.sitUrl+"transactions/mpesa", HttpMethod.POST, coreResponseHttpEntity, CoreResponse.class);
+            ResponseEntity<CoreResponse> coreResponseEntity= template.exchange(CONSTANTS.connectUrl+"transactions/mpesa", HttpMethod.POST, coreResponseHttpEntity, CoreResponse.class);
         }catch (Exception e){
             log.error(e.getMessage());
             e.printStackTrace();
