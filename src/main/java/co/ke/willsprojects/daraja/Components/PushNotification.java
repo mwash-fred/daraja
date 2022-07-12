@@ -37,7 +37,7 @@ public class PushNotification {
                     request.getMSISDN(), request.getTransAmount(), request.getTransTime(), request.getBusinessShortCode(), request.getTransID(),
                     request.getTransactionType(), null, null, null);
             //Login First
-            LoginRequest loginRequest = new LoginRequest(username, password);
+            LoginRequest loginRequest = new LoginRequest(CONSTANTS.username, CONSTANTS.password);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<LoginRequest> loginRequestEntity = new HttpEntity<>(loginRequest, headers);

@@ -8,4 +8,6 @@ public class CONSTANTS {
     public static final String B2C_TEST_INITIATOR_PASSWD = "Safaricom977!";
     public static final String b2cSimulationUrl = "https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest";
     public static final String sitUrl = "https://api.sit.fortunecredit.co.ke/";
+    public static final String username = "DARAJA";
+    public static final String password = "mpesa@FortuneIntegration22";
 }
