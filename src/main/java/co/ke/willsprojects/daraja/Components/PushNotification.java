@@ -2,6 +2,7 @@ package co.ke.willsprojects.daraja.Components;
 
 import co.ke.willsprojects.daraja.JsonSchemas.*;
 import co.ke.willsprojects.daraja.Models.MpesaConfirmations.MpesaConfirmation;
+import co.ke.willsprojects.daraja.Models.MpesaConfirmations.MpesaConfirmationRepository;
 import co.ke.willsprojects.daraja.Utils.CONSTANTS;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +32,9 @@ public class PushNotification {
     @Value("{integration.mpesa.password}")
     public String password;
 
+    @Autowired
+    private MpesaConfirmationRepository repository;
+
     public void confirmation(ConfirmationRequest request){
         try{
             MpesaConfirmation confirmation = new MpesaConfirmation(null, request.getFirstName().toUpperCase()+" "+request.getLastName().toUpperCase(),
@@ -45,10 +49,10 @@ public class PushNotification {
             //Posting to System After Authentication
             MpesaRepayment repayment = new MpesaRepayment(request.getMSISDN(), request.getTransAmount(), request.getFirstName().toUpperCase() + " "+
                     request.getLastName().toUpperCase(), request.getTransID(), request.getBusinessShortCode(), request.getBillRefNumber());
-            log.info("Request {}", repayment);
             headers.set("Authorization", "Bearer " + Objects.requireNonNull(loginResponseEntity.getBody()).getAccessToken());
             HttpEntity<MpesaRepayment> mpesaRepaymentHttpEntity = new HttpEntity<>(repayment , headers);
             ResponseEntity<CoreResponse> coreResponseEntity= template.exchange(CONSTANTS.connectUrl+"transactions/mpesa", HttpMethod.POST, mpesaRepaymentHttpEntity, CoreResponse.class);
+            repository.save(confirmation);
         }catch (Exception e){
             log.error(e.getMessage());
             e.printStackTrace();
