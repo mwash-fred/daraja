@@ -13,4 +13,5 @@ public class MpesaRepayment {
     public String payerName;
     public  String transactionNo;
     public String paybill;
+    public String idNo;
 }
