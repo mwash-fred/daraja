@@ -45,9 +45,9 @@ public class PushNotification {
             //Posting to System After Authentication
             MpesaRepayment repayment = new MpesaRepayment(request.getMSISDN(), request.getTransAmount(), request.getFirstName().toUpperCase() + " "+
                     request.getLastName().toUpperCase(), request.getTransID(), request.getBusinessShortCode());
+            log.info("Toke is {}", Objects.requireNonNull(loginResponseEntity.getBody()).getToken());
             headers.set("Authorization", "Bearer " + Objects.requireNonNull(loginResponseEntity.getBody()).getToken());
             HttpEntity<MpesaRepayment> mpesaRepaymentHttpEntity = new HttpEntity<>(repayment , headers);
-            log.info("Post Request is {}", mpesaRepaymentHttpEntity.getBody());
             ResponseEntity<CoreResponse> coreResponseEntity= template.exchange(CONSTANTS.connectUrl+"transactions/mpesa", HttpMethod.POST, mpesaRepaymentHttpEntity, CoreResponse.class);
         }catch (Exception e){
             log.error(e.getMessage());
