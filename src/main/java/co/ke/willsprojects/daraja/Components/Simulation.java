@@ -31,6 +31,7 @@ public class Simulation {
         if (Objects.isNull(response)) {
             log.error("M-PESA Authorization could not be done");
         }
+        log.info("Authorixzation done");
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", "Bearer " + response.getAccessToken());
