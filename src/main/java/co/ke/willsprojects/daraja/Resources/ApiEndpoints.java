@@ -3,6 +3,7 @@ package co.ke.willsprojects.daraja.Resources;
 import co.ke.willsprojects.daraja.Components.*;
 import co.ke.willsprojects.daraja.JsonSchemas.*;
 import co.ke.willsprojects.daraja.Models.MpesaConfirmations.MpesaConfirmationRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RequestMapping("mobile")
 @RestController
-@CrossOrigin
+@CrossOrigin @Slf4j
 public class ApiEndpoints {
     @Autowired
     private MpesaAuthentication authentication;
@@ -49,6 +50,7 @@ public class ApiEndpoints {
     @PostMapping("register/confirmationUrl")
     public ResponseEntity<C2BRegistrationResponse> registerCofirmationUrl(@RequestBody C2BRegisterUrlRequest request) {
         AuthorizationResponse response = authorize().getBody();
+        log.info("Response");
         return ResponseEntity.ok().body(registration.registerUrlResponse(request, response));
     }
 
