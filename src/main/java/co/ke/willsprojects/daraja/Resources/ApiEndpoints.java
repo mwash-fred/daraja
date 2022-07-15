@@ -1,9 +1,6 @@
 package co.ke.willsprojects.daraja.Resources;
 
-import co.ke.willsprojects.daraja.Components.C2BUrlRegistration;
-import co.ke.willsprojects.daraja.Components.MpesaAuthentication;
-import co.ke.willsprojects.daraja.Components.PushNotification;
-import co.ke.willsprojects.daraja.Components.Simulation;
+import co.ke.willsprojects.daraja.Components.*;
 import co.ke.willsprojects.daraja.JsonSchemas.*;
 import co.ke.willsprojects.daraja.Models.MpesaConfirmations.MpesaConfirmationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +17,7 @@ public class ApiEndpoints {
     private MpesaAuthentication authentication;
 
     @Autowired
-    private Simulation simulation;
+    private Production simulation;
 
     @Autowired
     private MpesaConfirmationRepository repository;
