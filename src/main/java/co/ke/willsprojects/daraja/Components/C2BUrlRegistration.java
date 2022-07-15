@@ -23,12 +23,12 @@ public class C2BUrlRegistration {
     private MpesaAuthentication authentication;
 
     public C2BRegistrationResponse registerUrlResponse(C2BRegisterUrlRequest request, @NonNull AuthorizationResponse response) {
-        if (!Objects.isNull(response)) {
+        if (Objects.isNull(response)) {
             log.error("M-PESA Authorization could not be done");
         }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer " + authentication.authenticate().getAccessToken());
+        headers.set("Authorization", "Bearer " + response.getAccessToken());
         HttpEntity<C2BRegisterUrlRequest> requestEntity = new HttpEntity<>(request, headers);
         ResponseEntity<C2BRegistrationResponse> responseEntity = template.exchange(CONSTANTS.c2bUrlRegistrationUrl, HttpMethod.POST, requestEntity, C2BRegistrationResponse.class);
         return responseEntity.getBody();
