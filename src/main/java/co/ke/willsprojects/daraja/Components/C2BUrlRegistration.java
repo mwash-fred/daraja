@@ -4,6 +4,7 @@ import co.ke.willsprojects.daraja.JsonSchemas.AuthorizationResponse;
 import co.ke.willsprojects.daraja.JsonSchemas.C2BRegisterUrlRequest;
 import co.ke.willsprojects.daraja.JsonSchemas.C2BRegistrationResponse;
 import co.ke.willsprojects.daraja.Utils.CONSTANTS;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -21,11 +22,10 @@ public class C2BUrlRegistration {
     @Autowired
     private MpesaAuthentication authentication;
 
-    public C2BRegistrationResponse registerUrlResponse(C2BRegisterUrlRequest request) {
-//        AuthorizationResponse response = authentication.authenticate();
-//        if (!Objects.isNull(response)) {
-//            log.error("M-PESA Authorization could not be done");
-//        }
+    public C2BRegistrationResponse registerUrlResponse(C2BRegisterUrlRequest request, @NonNull AuthorizationResponse response) {
+        if (!Objects.isNull(response)) {
+            log.error("M-PESA Authorization could not be done");
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", "Bearer " + authentication.authenticate().getAccessToken());

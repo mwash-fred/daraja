@@ -48,7 +48,8 @@ public class ApiEndpoints {
 
     @PostMapping("register/confirmationUrl")
     public ResponseEntity<C2BRegistrationResponse> registerCofirmationUrl(@RequestBody C2BRegisterUrlRequest request) {
-        return ResponseEntity.ok().body(registration.registerUrlResponse(request));
+        AuthorizationResponse response = authorize().getBody();
+        return ResponseEntity.ok().body(registration.registerUrlResponse(request, response));
     }
 
     @PostMapping("confirm/payment")
