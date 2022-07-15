@@ -34,7 +34,10 @@ public class ApiEndpoints {
 
     @GetMapping("authorize")
     public ResponseEntity<AuthorizationResponse> authorize() {
-        return ResponseEntity.ok().body(authentication.authenticate());
+        log.info("Authentication called");
+        AuthorizationResponse response = authentication.authenticate();
+        log.info("Response is {}", response);
+        return ResponseEntity.ok().body(response);
     }
 
     @PostMapping("c2bSimulation")
@@ -50,7 +53,7 @@ public class ApiEndpoints {
     @PostMapping("register/confirmationUrl")
     public ResponseEntity<C2BRegistrationResponse> registerCofirmationUrl(@RequestBody C2BRegisterUrlRequest request) {
         AuthorizationResponse response = authorize().getBody();
-        log.info("Response");
+        log.info("Response {}", response);
         return ResponseEntity.ok().body(registration.registerUrlResponse(request, response));
     }
 
