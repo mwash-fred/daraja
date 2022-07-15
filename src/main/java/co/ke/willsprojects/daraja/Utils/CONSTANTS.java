@@ -1,7 +1,7 @@
 package co.ke.willsprojects.daraja.Utils;
 
 public class CONSTANTS {
-    public static final String authenticationUrl = "https://api.safaricom.co.ke/oauth/v1/generate";
+    public static final String authenticationUrl = "https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
     public static final String c2bSimulationUrl = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate";
     public static final String c2bUrlRegistrationUrl = "https://api.safaricom.co.ke/mpesa/c2b/v1/registerurl";
     public static final String B2C_TEST_INITIATOR_USERNAME = "GMUKOYA";
