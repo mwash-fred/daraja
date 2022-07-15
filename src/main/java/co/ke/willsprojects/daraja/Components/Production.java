@@ -49,7 +49,7 @@ public class Production {
         }
         request.setCommandID("BusinessPayment");
         request.setOccasion("Customer Credit");
-        request.setSecurityCredential(passwordEncrypt.generateSecurityCredentials(Certificate.simulationCertificate, CONSTANTS.B2C_TEST_INITIATOR_PASSWD));
+        request.setSecurityCredential(passwordEncrypt.generateSecurityCredentials(Certificate.productionCertificate, CONSTANTS.B2C_TEST_INITIATOR_PASSWD));
         log.info("Security Credential are {}", request.getSecurityCredential());
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
