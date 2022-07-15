@@ -29,11 +29,11 @@ eureka:
 mpesa:
   app:
     consumer:
-      key: onUXiqfDTmWFagIZYyFu5LAiXva6JCv1
-      secret: UUUlFYplL4c5sKUX
+      key: 1fihhPVGosE4FQh5Jt6hSq79gJevgvTD
+      secret: AGzBZHcNiGuqYxcK
   b2c:
-    validationUrl: payup.fortunecredit.co.ke/mobile/validate/payment
-    confirmationUrl: payup.fortunecredit.co.ke/mobile/confirm/payment
+    validationUrl: payme.fortunecredit.co.ke/mobile/validate/payment
+    confirmationUrl: payme.fortunecredit.co.ke/mobile/confirm/payment
   initiator:
     name:
 
