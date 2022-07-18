@@ -1,5 +1,6 @@
 package co.ke.willsprojects.daraja.JsonSchemas;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -27,8 +28,10 @@ public class ConfirmationC2BRequest {
     private String msisdn;
     @JsonProperty("FirstName")
     private String firstName;
+    @JsonIgnore
     @JsonProperty("MiddleName")
     private String middlename;
+    @JsonIgnore
     @JsonProperty("LastName")
     private String lastName;
 }

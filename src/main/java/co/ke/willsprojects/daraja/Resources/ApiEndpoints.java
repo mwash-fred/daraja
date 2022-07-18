@@ -52,19 +52,19 @@ public class ApiEndpoints {
 
     @PostMapping("register/confirmationUrl")
     public ResponseEntity<C2BRegistrationResponse> registerCofirmationUrl(@RequestBody C2BRegisterUrlRequest request) {
-        AuthorizationResponse response = authorize().getBody();
-        log.info("Response {}", response);
-        return ResponseEntity.ok().body(registration.registerUrlResponse(request, response));
+        return ResponseEntity.ok().body(registration.registerUrlResponse(request));
     }
 
     @PostMapping("confirm/payment")
     public ResponseEntity<ConfirmationRequest> confirm(@RequestBody ConfirmationRequest request) {
+        log.info("New confirmation");
         notification.confirmation(request);
         return ResponseEntity.ok().body(request);
     }
 
     @PostMapping("validate/payment")
     public ResponseEntity<C2BValidationResponse> validate(@RequestBody C2BValidationRequest request) {
+        log.info("New validation");
         C2BValidationResponse response = new C2BValidationResponse("Accepted", 0);
         return ResponseEntity.ok().body(response);
     }

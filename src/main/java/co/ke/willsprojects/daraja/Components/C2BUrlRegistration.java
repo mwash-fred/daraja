@@ -22,7 +22,8 @@ public class C2BUrlRegistration {
     @Autowired
     private MpesaAuthentication authentication;
 
-    public C2BRegistrationResponse registerUrlResponse(C2BRegisterUrlRequest request, @NonNull AuthorizationResponse response) {
+    public C2BRegistrationResponse registerUrlResponse(C2BRegisterUrlRequest request) {
+        AuthorizationResponse response = authentication.authenticate();
         if (Objects.isNull(response)) {
             log.error("M-PESA Authorization could not be done");
         }

@@ -37,7 +37,7 @@ public class PushNotification {
 
     public void confirmation(ConfirmationRequest request){
         try{
-            MpesaConfirmation confirmation = new MpesaConfirmation(null, request.getFirstName().toUpperCase()+" "+request.getLastName().toUpperCase(),
+            MpesaConfirmation confirmation = new MpesaConfirmation(null, request.getFirstName().toUpperCase(),
                     request.getMSISDN(), request.getTransAmount(), request.getTransTime(), request.getBusinessShortCode(), request.getTransID(),
                     request.getTransactionType(), null, null, null);
             //Login First
@@ -47,8 +47,7 @@ public class PushNotification {
             HttpEntity<LoginRequest> loginRequestEntity = new HttpEntity<>(loginRequest, headers);
             ResponseEntity<LoginResponse> loginResponseEntity = template.exchange(CONSTANTS.connectUrl+"auth/signin", HttpMethod.POST, loginRequestEntity, LoginResponse.class);
             //Posting to System After Authentication
-            MpesaRepayment repayment = new MpesaRepayment(request.getMSISDN(), request.getTransAmount(), request.getFirstName().toUpperCase() + " "+
-                    request.getLastName().toUpperCase(), request.getTransID(), request.getBusinessShortCode(), request.getBillRefNumber());
+            MpesaRepayment repayment = new MpesaRepayment(request.getMSISDN(), request.getTransAmount(), request.getFirstName().toUpperCase(), request.getTransID(), request.getBusinessShortCode(), request.getBillRefNumber());
             headers.set("Authorization", "Bearer " + Objects.requireNonNull(loginResponseEntity.getBody()).getAccessToken());
             HttpEntity<MpesaRepayment> mpesaRepaymentHttpEntity = new HttpEntity<>(repayment , headers);
             ResponseEntity<CoreResponse> coreResponseEntity= template.exchange(CONSTANTS.connectUrl+"transactions/mpesa", HttpMethod.POST, mpesaRepaymentHttpEntity, CoreResponse.class);
