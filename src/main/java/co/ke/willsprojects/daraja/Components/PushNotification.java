@@ -11,6 +11,8 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -50,7 +52,7 @@ public class PushNotification {
             MpesaRepayment repayment = new MpesaRepayment(request.getMSISDN(), request.getTransAmount(), request.getFirstName().toUpperCase(), request.getTransID(), request.getBusinessShortCode(), request.getBillRefNumber());
             headers.set("Authorization", "Bearer " + Objects.requireNonNull(loginResponseEntity.getBody()).getAccessToken());
             HttpEntity<MpesaRepayment> mpesaRepaymentHttpEntity = new HttpEntity<>(repayment , headers);
-            ResponseEntity<CoreResponse> coreResponseEntity= template.exchange(CONSTANTS.connectUrl+"transactions/mpesa", HttpMethod.POST, mpesaRepaymentHttpEntity, CoreResponse.class);
+            ResponseEntity<CoreResponse[]> coreResponseEntity= template.exchange(CONSTANTS.connectUrl+"transactions/mpesa", HttpMethod.POST, mpesaRepaymentHttpEntity, CoreResponse[].class);
             repository.save(confirmation);
         }catch (Exception e){
             log.error(e.getMessage());

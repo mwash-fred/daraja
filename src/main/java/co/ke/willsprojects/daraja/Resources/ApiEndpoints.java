@@ -34,9 +34,7 @@ public class ApiEndpoints {
 
     @GetMapping("authorize")
     public ResponseEntity<AuthorizationResponse> authorize() {
-        log.info("Authentication called");
         AuthorizationResponse response = authentication.authenticate();
-        log.info("Response is {}", response);
         return ResponseEntity.ok().body(response);
     }
 
