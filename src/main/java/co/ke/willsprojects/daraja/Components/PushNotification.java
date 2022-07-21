@@ -41,7 +41,7 @@ public class PushNotification {
         try{
             MpesaConfirmation confirmation = new MpesaConfirmation(null, request.getFirstName().toUpperCase(),
                     request.getMSISDN(), request.getTransAmount(), request.getTransTime(), request.getBusinessShortCode(), request.getTransID(),
-                    request.getTransactionType(), null, null, null);
+                    request.getTransactionType(), null, null, null, request.getBillRefNumber());
             //Login First
             LoginRequest loginRequest = new LoginRequest(CONSTANTS.username, CONSTANTS.password);
             HttpHeaders headers = new HttpHeaders();

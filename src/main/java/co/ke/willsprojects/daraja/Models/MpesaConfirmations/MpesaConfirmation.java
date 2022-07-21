@@ -27,11 +27,13 @@ public class MpesaConfirmation {
     private Boolean transactionStatus;
     @Temporal(TemporalType.TIMESTAMP)
     private Date corePostedTime;
+    @Column(nullable = false, length = 20)
+    private String customerId;
 
     public MpesaConfirmation() {
     }
 
-    public MpesaConfirmation(Long sn, String customerName, String phoneNumber, Double transactionAmount, Date transactionTime, String paybillNo, String mpesaTransactionNo, String transactionType, String coreTranId, Boolean transactionStatus, Date corePostedTime) {
+    public MpesaConfirmation(Long sn, String customerName, String phoneNumber, Double transactionAmount, Date transactionTime, String paybillNo, String mpesaTransactionNo, String transactionType, String coreTranId, Boolean transactionStatus, Date corePostedTime, String customerId) {
         this.sn = sn;
         this.customerName = customerName;
         this.phoneNumber = phoneNumber;
@@ -43,6 +45,7 @@ public class MpesaConfirmation {
         this.coreTranId = coreTranId;
         this.transactionStatus = transactionStatus;
         this.corePostedTime = corePostedTime;
+        this.customerId = customerId;
     }
 
     public Long getSn() {
@@ -131,5 +134,13 @@ public class MpesaConfirmation {
 
     public void setCorePostedTime(Date corePostedTime) {
         this.corePostedTime = corePostedTime;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 }
