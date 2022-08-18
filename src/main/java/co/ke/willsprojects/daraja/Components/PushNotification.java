@@ -42,6 +42,7 @@ public class PushNotification {
             MpesaConfirmation confirmation = new MpesaConfirmation(null, request.getFirstName().toUpperCase(),
                     request.getMSISDN(), request.getTransAmount(), request.getTransTime(), request.getBusinessShortCode(), request.getTransID(),
                     request.getTransactionType(), null, null, null, request.getBillRefNumber());
+            repository.save(confirmation);
             //Login First
             LoginRequest loginRequest = new LoginRequest(CONSTANTS.username, CONSTANTS.password);
             HttpHeaders headers = new HttpHeaders();
@@ -53,7 +54,6 @@ public class PushNotification {
             headers.set("Authorization", "Bearer " + Objects.requireNonNull(loginResponseEntity.getBody()).getAccessToken());
             HttpEntity<MpesaRepayment> mpesaRepaymentHttpEntity = new HttpEntity<>(repayment , headers);
             ResponseEntity<CoreResponse[]> coreResponseEntity= template.exchange(CONSTANTS.connectUrl+"transactions/mpesa", HttpMethod.POST, mpesaRepaymentHttpEntity, CoreResponse[].class);
-            repository.save(confirmation);
         }catch (Exception e){
             log.error(e.getMessage());
             e.printStackTrace();
