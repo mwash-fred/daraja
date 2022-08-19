@@ -10,7 +10,7 @@ public class MpesaConfirmation {
     private Long sn;
     @Column(length = 200)
     private String customerName;
-    @Column(length = 12)
+    @Column(length = 20)
     private String phoneNumber;
     @Column(precision = 10, scale = 2)
     private Double transactionAmount;
