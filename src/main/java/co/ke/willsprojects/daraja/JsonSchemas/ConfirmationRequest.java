@@ -1,5 +1,6 @@
 package co.ke.willsprojects.daraja.JsonSchemas;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -45,5 +46,6 @@ public class ConfirmationRequest {
     private String transID;
 
     @JsonProperty("TransTime")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMddHHmmss")
     private Date transTime;
 }
