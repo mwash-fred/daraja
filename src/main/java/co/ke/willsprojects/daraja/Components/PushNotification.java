@@ -54,6 +54,13 @@ public class PushNotification {
             headers.set("Authorization", "Bearer " + Objects.requireNonNull(loginResponseEntity.getBody()).getAccessToken());
             HttpEntity<MpesaRepayment> mpesaRepaymentHttpEntity = new HttpEntity<>(repayment , headers);
             ResponseEntity<CoreResponse[]> coreResponseEntity= template.exchange(CONSTANTS.connectUrl+"transactions/mpesa", HttpMethod.POST, mpesaRepaymentHttpEntity, CoreResponse[].class);
+            //Updating the Database with Transaction on Core Server
+            for(CoreResponse coreResponse : Objects.requireNonNull(coreResponseEntity.getBody())){
+                confirmation.setCorePostedTime(coreResponse.getPostedTime());
+                confirmation.setCoreTranId(coreResponse.getTransactionNo());
+                confirmation.setTransactionStatus(coreResponse.getTransactionStatus());
+                repository.save(confirmation);
+            }
         }catch (Exception e){
             log.error(e.getMessage());
             e.printStackTrace();
