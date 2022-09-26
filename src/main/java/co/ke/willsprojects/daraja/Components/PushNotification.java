@@ -42,7 +42,7 @@ public class PushNotification {
             MpesaConfirmation confirmation = new MpesaConfirmation(null, request.getFirstName().toUpperCase(),
                     request.getMSISDN(), request.getTransAmount(), request.getTransTime(), request.getBusinessShortCode(), request.getTransID(),
                     request.getTransactionType(), null, null, null, request.getBillRefNumber());
-            repository.save(confirmation);
+            MpesaConfirmation postedConfirmation = repository.save(confirmation);
             //Login First
             LoginRequest loginRequest = new LoginRequest(CONSTANTS.username, CONSTANTS.password);
             HttpHeaders headers = new HttpHeaders();
@@ -55,11 +55,12 @@ public class PushNotification {
             HttpEntity<MpesaRepayment> mpesaRepaymentHttpEntity = new HttpEntity<>(repayment , headers);
             ResponseEntity<CoreResponse[]> coreResponseEntity= template.exchange(CONSTANTS.connectUrl+"transactions/mpesa", HttpMethod.POST, mpesaRepaymentHttpEntity, CoreResponse[].class);
             //Updating the Database with Transaction on Core Server
+            log.info("Response from core is {}", coreResponseEntity.getBody());
             for(CoreResponse coreResponse : Objects.requireNonNull(coreResponseEntity.getBody())){
-                confirmation.setCorePostedTime(coreResponse.getPostedTime());
-                confirmation.setCoreTranId(coreResponse.getTransactionNo());
-                confirmation.setTransactionStatus(coreResponse.getTransactionStatus());
-                repository.save(confirmation);
+                postedConfirmation.setCorePostedTime(coreResponse.getPostedTime());
+                postedConfirmation.setCoreTranId(coreResponse.getTransactionNo());
+                postedConfirmation.setTransactionStatus(coreResponse.getTransactionStatus());
+                repository.save(postedConfirmation);
             }
         }catch (Exception e){
             log.error(e.getMessage());
