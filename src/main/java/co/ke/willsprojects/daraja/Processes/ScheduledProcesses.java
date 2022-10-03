@@ -21,6 +21,7 @@ public class ScheduledProcesses {
         for (MpesaConfirmation confirmation :  repository.findAll()){
             PartTran partTran = repository.mpesaPart(confirmation.getMpesaTransactionNo());
             if(!Objects.isNull(partTran)){
+                log.info("Part Tran {}",partTran);
                 confirmation.setCoreTranId(partTran.getTranId().toString());;
             }
         }
