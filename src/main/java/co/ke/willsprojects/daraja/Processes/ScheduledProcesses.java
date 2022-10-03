@@ -16,12 +16,13 @@ public class ScheduledProcesses {
     @Autowired
     private MpesaConfirmationRepository repository;
 
-//    @Scheduled(fixedRate = 10000000000L)
+    @Scheduled(fixedRate = 10000000000L)
     public void coreTransactions(){
         for (MpesaConfirmation confirmation :  repository.findAll()){
             PartTran partTran = repository.mpesaPart(confirmation.getMpesaTransactionNo());
             if(!Objects.isNull(partTran)){
                 confirmation.setCoreTranId(partTran.getTranId().toString());;
+                repository.save(confirmation);
             }
         }
         log.info("Completed");
