@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface MpesaConfirmationRepository extends JpaRepository<MpesaConfirmation, Long> {
     MpesaConfirmation findByMpesaTransactionNo(String transactionNo);
 
-    @Query(value = "select * from part_tran where tran_particulars regexp :code limit 1", nativeQuery = true)
+    @Query(value = "select tran_id as tranId from part_tran where tran_particulars regexp :code limit 1", nativeQuery = true)
     PartTran mpesaPart(@Param("code") String mpesaCode);
 }
